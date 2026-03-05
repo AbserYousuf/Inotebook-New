@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import data from "./notescontext";
 import { useNavigate } from "react-router-dom";
-import Login from "../Components/Login";
-
 export default function Handlecontext({children}) {
     const [notes,setnotes] = useState([])
     const [loading,setloading]=useState(false)
@@ -18,9 +16,9 @@ export default function Handlecontext({children}) {
       const [UserEmail,setUserEmail]=useState(null)
     const deletenotes =async(id)=>{
         const token = localStorage.getItem('authtoken')
-        const URL =  'http://localhost:3000'
+        const backendUrl = import.meta.env.VITE_APP_API_URL;
         try {
-            const response = await fetch(`${URL}/api/notes/deletenotes/${id}`,{
+            const response = await fetch(`${backendUrl}/api/notes/deletenotes/${id}`,{
                 method:"DELETE",
                 headers:{
                     "Content-Type":"application/json",
@@ -41,9 +39,9 @@ export default function Handlecontext({children}) {
     
     const addnotes =async(title,description)=>{
       const token = localStorage.getItem('authtoken')
-        const Url = 'http://localhost:3000'
+      const backendUrl = import.meta.env.VITE_APP_API_URL;
         try {
-            const response = await fetch(`${Url}/api/notes/createnotes`,{
+            const response = await fetch(`${backendUrl}/api/notes/createnotes`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",
@@ -65,9 +63,9 @@ export default function Handlecontext({children}) {
     const updatenotes=async(id, title,description)=>{
         const token = localStorage.getItem('authtoken')
         console.log(title,description)
-        const Url = "http://localhost:3000"
+        const backendUrl = import.meta.env.VITE_APP_API_URL;
         try {
-            const response = await fetch(`${Url}/api/notes/updatenotes/${id}`,{
+            const response = await fetch(`${backendUrl}/api/notes/updatenotes/${id}`,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json",
@@ -96,16 +94,14 @@ export default function Handlecontext({children}) {
     }
     const Forgotpassword = async(Email)=>{
         const email = Email.trim()
-        console.log("USER EMAIL FROM RESEND",Email)
-        console.log("USER EMAIL FROM FIRST REQ",email)
     const checkemail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     if(!checkemail){
       setError("Enter The Correct Email")
       return
     }
-    const Url='http://localhost:3000'
+    const backendUrl = import.meta.env.VITE_APP_API_URL;
     try {       
-    const response = await fetch( `${Url}/api/auth/forgotpassword`,{
+    const response = await fetch( `${backendUrl}/api/auth/forgotpassword`,{
         method:"POST",
            headers:{
             "Content-Type":'application/json'
@@ -119,7 +115,15 @@ export default function Handlecontext({children}) {
     const json = await response.json()
     if(!json.success){
          setError(json.error?json.error:json.msg)
+       
+        
+         setTimeout(() => {
+           setmsg(null)
+           navigate('/otp')
+       
+         }, 3000);
          return;
+
     }
     else{
    setmsg(json.message)
@@ -140,9 +144,9 @@ export default function Handlecontext({children}) {
    const getnotes =async()=>{
     setloading(true)
             const token = localStorage.getItem('authtoken')
-            const URL = 'http://localhost:3000'
+            const backendUrl = import.meta.env.VITE_APP_API_URL;
             try {
-                const response = await fetch(`${URL}/api/notes/getnotes`,{
+                const response = await fetch(`${backendUrl}/api/notes/getnotes`,{
                     method:"GET",
                     headers:{
                        "Content-Type":"application/json",
@@ -178,9 +182,9 @@ export default function Handlecontext({children}) {
                 navigate('/login')
                 return
             }
-             const Url ='http://localhost:3000'
+            const backendUrl = import.meta.env.VITE_APP_API_URL;
              try {
-                const response = await fetch(`${Url}/api/auth/otpverify`,{
+                const response = await fetch(`${backendUrl}/api/auth/otpverify`,{
                     method:"POST",
                     headers:{
                         "Content-Type":"application/json",
@@ -213,14 +217,14 @@ export default function Handlecontext({children}) {
              }
         }
         const resetpassword=async(password)=>{
-            const Url='http://localhost:3000'
+            const backendUrl = import.meta.env.VITE_APP_API_URL;
             const token = localStorage.getItem('token')
             if(!token ){
                 navigate('forgot-password')
                 return
             }
        try {
-          const response = await fetch(`${Url}/api/auth/updatepassword`,{
+          const response = await fetch(`${backendUrl}/api/auth/updatepassword`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json",
@@ -272,9 +276,9 @@ export default function Handlecontext({children}) {
           if(!token){
             throw new Error("Access Denied")
           }
-          const Url = 'http://localhost:3000'
+          const backendUrl = import.meta.env.VITE_APP_API_URL;
           try {
-            const response = await fetch(`${Url}/api/auth/getuser`,{
+            const response = await fetch(`${backendUrl}/api/auth/getuser`,{
                 method:"GET",
                 headers:{
                     "Content-Type":"application/json",
