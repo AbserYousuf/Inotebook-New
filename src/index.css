@@ -1,32 +1,32 @@
 /* src/index.css */
-
 @import "tailwindcss";
 
-/* HeroUI plugin – relative path to hero.js (no extension needed) */
-@plugin "C:/PROJECTS CREATE REACT APP/Notebook/inotebookF/inotebook/hero.js";
+/* HeroUI plugin – use relative path (no quotes around path if relative) */
+@plugin "./hero-plugin.js";   /* ← adjust path to match your file location */
 
-/* Critical: scan HeroUI's theme files for classes, variants, CSS vars */
+/* Scan HeroUI's theme files for classes, variants, CSS vars etc. */
 @source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 
-/* Optional: dark mode variant (use if darkMode: "class" in config) */
+/* Optional: dark mode variant (common for HeroUI) */
 @custom-variant dark (&:is(.dark *));
 
-/* Tailwind layers – put after plugin/source */
+/* Tailwind layers – keep these after plugin/source */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Your custom animations stay the same */
 @keyframes slideDown {
-    0% {
-      opacity: 0;
-      transform: translate(-50%, -30px);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30px);
   }
-  
-  .animate-slideDown {
-    animation: slideDown 0.4s ease forwards;
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s ease forwards;
+}
