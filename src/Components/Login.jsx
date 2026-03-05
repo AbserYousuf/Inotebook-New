@@ -40,9 +40,9 @@ export default function Login() {
       let payload = { password: details.password };
       if (isEmail) payload.email = details.identifier;
       else payload.username = details.identifier;
-
+      const backendUrl = import.meta.env.VITE_APP_API_URL;
       const response = await fetch(
-        "http://localhost:3000/api/auth/login",
+        `${backendUrl}/api/auth/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
