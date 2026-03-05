@@ -37,8 +37,8 @@ export default function Signup() {
 
     try {
       setLoading(true);
-
-      const response = await fetch("http://localhost:3000/api/auth/create", {
+      const backendUrl = import.meta.env.VITE_APP_API_URL;
+      const response = await fetch(`${backendUrl}/api/auth/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(grabdetails),
