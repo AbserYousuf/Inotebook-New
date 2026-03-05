@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /* HeroUI plugin – use relative path (no quotes around path if relative) */
-@plugin "./hero-plugin.js";   /* ← adjust path to match your file location */
+@plugin "./hero.js";   /* ← adjust path to match your file location */
 
 /* Scan HeroUI's theme files for classes, variants, CSS vars etc. */
 @source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
