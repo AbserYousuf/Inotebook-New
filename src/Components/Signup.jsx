@@ -25,7 +25,7 @@ export default function Signup() {
 
     const grabdetails = {
       email: user.email.trim(),
-      username: user.username.trim(),
+      Username: user.username.trim(),
       name: user.name.trim(),
       password: user.password.trim(),
     };
