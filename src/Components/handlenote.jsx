@@ -65,7 +65,7 @@ const passnote=(note)=>{
     if (!loading && notes.length === 0) {
       return (
         <div className="container text-center my-5">
-          <h2 style={{color:"white"}}>Sorry, {user.Name?user.Name:"User"}. No Notes Founded.</h2>
+          <h2 style={{color:"white"}}>Sorry, {user.name?user.name:"user"}. No Notes Founded.</h2>
           <p style={{color:"white"}}>  Try creating your first note </p>
         </div>
       );
