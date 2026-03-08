@@ -65,15 +65,15 @@ export default function UserProfile(props) {
       boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
     }}
   >
-    {user?.Name?.charAt(0) || "U"}
+    {user?.name?.charAt(0) || "U"}
   </Avatar>
 </Stack>
 
     <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
     {[
-    { label: "Name", value: user.Name || "No Name" },
-    { label: "Username", value: user.UserName || "No Username" },
-    { label: "Email", value: user.Email || "No Email" },
+    { label: "Name", value: user.name || "No Name" },
+    { label: "Username", value: user.username || "No Username" },
+    { label: "Email", value: user.email || "No Email" },
   ].map((item, index) => (
     <Box key={index}>
       <Box sx={{ fontWeight: 600, fontSize: "0.9rem", opacity: 0.7 }}>
