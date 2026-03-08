@@ -24,10 +24,10 @@ export default function Signup() {
     e.preventDefault();
 
     const grabdetails = {
-      Email: user.email.trim(),
-      Username: user.username.trim(),
-      Name: user.name.trim(),
-      Password: user.password.trim(),
+      email: user.email.trim(),
+      username: user.username.trim(),
+      name: user.name.trim(),
+      password: user.password.trim(),
     };
 
     if (Object.values(grabdetails).some((field) => !field)) {
