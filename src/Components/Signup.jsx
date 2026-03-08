@@ -10,10 +10,10 @@ export default function Signup() {
   const [showPass, setShowPass] = useState(false);
 
   const [user, setUser] = useState({
-    email: "",
-    username: "",
-    name: "",
-    password: "",
+    Email: "",
+    Username: "",
+    Name: "",
+    Password: "",
   });
 
   const handleChange = (e) => {
