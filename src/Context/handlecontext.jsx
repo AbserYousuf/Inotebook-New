@@ -114,13 +114,9 @@ export default function Handlecontext({children}) {
     }
     const json = await response.json()
     if(!json.success){
-         setError(json.error?json.error:json.msg)
-       
-        
+         setError('Account Not Found, Make Sure the Entered Email is Correct') 
          setTimeout(() => {
-           setmsg(null)
-           navigate('/otp')
-       
+           setmsg(null)  
          }, 3000);
          return;
 
